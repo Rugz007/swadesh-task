@@ -54,16 +54,10 @@ export default function Home({ data }) {
   );
 }
 
-export async function getServerSideProps() {
-  try {
-    const res = await fetch(`http://localhost:3000/api/data`);
-    const data = await res.json();
-  } catch (e) {
-    console.log(e);
-    const data = e;
-  }
-  // Fetch data from external API
-
-  // Pass data to the page via props
+export async function getServerSideProps({req}) {
+  const protocol = req.headers['x-forwarded-proto'] || 'http'
+  const baseUrl = req ? `${protocol}://${req.headers.host}` : ''
+  const res = await fetch(baseUrl+'/api/data');
+  const data = await res.json();
   return { props: { data } };
 }
