@@ -41,8 +41,8 @@ export default function Home({ data }) {
             </p>
             <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-3 gap-6 2xl:gap-12 mb-20">
               {data.pastProperties.map((e) => (
-                <div  data-aos="fade-up" className="pt-0 ">
-                  <Card  data={e} status="FUNDED" />
+                <div data-aos="fade-up" className="pt-0 ">
+                  <Card data={e} status="FUNDED" />
                 </div>
               ))}
             </div>
@@ -55,9 +55,14 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
+  try {
+    const res = await fetch(`http://localhost:3000/api/data`);
+    const data = await res.json();
+  } catch (e) {
+    console.log(e);
+    const data = e;
+  }
   // Fetch data from external API
-  const res = await fetch(`http://localhost:3000/api/data`);
-  const data = await res.json();
 
   // Pass data to the page via props
   return { props: { data } };

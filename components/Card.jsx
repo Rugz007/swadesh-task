@@ -2,7 +2,6 @@ import React from "react";
 
 function Card({ data, status }) {
   return (
-      
     <div
       className="rounded-2xl max-w-full grid grid-cols-12 drop-shadow-2xl  "
       style={{ backgroundColor: "white" }}
@@ -17,7 +16,7 @@ function Card({ data, status }) {
         <img
           className="z-2   pb-6 md:pb-0 lg:pb-12 overflow-hidden  rounded-t-2xl  "
           style={{ width: "100%" }}
-          src={'images/'+data.imgName}
+          src={"images/" + data.imgName}
         />
       </div>
       <div className="col-span-12 -my-6 grid-rows-5  mb-5 mx-8 ">
@@ -115,7 +114,8 @@ function Card({ data, status }) {
           >
             <p className="text-white font-black flex">
               {" "}
-              View Opportunity <img className="mx-2" src="images/arrow-right.svg" />
+              View Opportunity{" "}
+              <img className="mx-2" src="images/arrow-right.svg" />
             </p>
           </button>
         </div>
